@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "b968e6f7-996e-480e-ad73-b95f99602cce",
+		"name": "UserRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20105305"
+	},
+	"item": [
+		{
+			"name": "UserRoleRequests",
+			"item": []
+		},
+		{
+			"name": "Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{userURL}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{userURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData.name).to.be.a(\"string\");\r",
+							"  pm.expect(jsonData.email).to.be.not.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{userURL}}/bfcc97d0-d6d1-4c37-92e1-1390eb2f0d07",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"bfcc97d0-d6d1-4c37-92e1-1390eb2f0d07"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{testBody}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{userURL}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{userURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/{{userURL}}/beb22a64-2372-45e5-bf3f-0de93eb6f616",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"beb22a64-2372-45e5-bf3f-0de93eb6f616"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData.cars).to.be.not.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"vadim\",\r\n\"email\":\"vadim@gmail.com\",\r\n\"password\":\"Clown123\",\r\n\"birthday\":\"2001-03-10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{userURL}}/bfcc97d0-d6d1-4c37-92e1-1390eb2f0d07",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{userURL}}",
+						"bfcc97d0-d6d1-4c37-92e1-1390eb2f0d07"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userid",
+			"value": "{id}"
+		},
+		{
+			"key": "userURL",
+			"value": "api/users",
+			"type": "string"
+		}
+	]
+}
